@@ -21,4 +21,4 @@ jobs:
         uses: MishaKav/jest-coverage-comment@main
         with:
           hide-comment: true
-          coverage-summary-path: ./coverage/coverage-final.json
+          coverage-summary-path: coverage/coverage-final.json
