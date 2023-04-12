@@ -13,7 +13,7 @@
 
 ## Getting Started
 
-### Install library
+### Install deps
 ```
 npm i
 ```
