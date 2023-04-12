@@ -1,0 +1,277 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Transaction": {
+				"properties": {
+					"fromAddress": {
+						"type": "string",
+						"nullable": true
+					},
+					"toAddress": {
+						"type": "string",
+						"nullable": true
+					},
+					"amount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"fromAddress",
+					"toAddress",
+					"amount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Block": {
+				"properties": {
+					"timestamp": {
+						"type": "number",
+						"format": "double"
+					},
+					"transactions": {},
+					"prevHash": {
+						"type": "string"
+					},
+					"hash": {
+						"type": "string"
+					},
+					"nonce": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"timestamp",
+					"transactions",
+					"prevHash",
+					"hash",
+					"nonce"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ChainResponse": {
+				"properties": {
+					"chain": {
+						"items": {
+							"$ref": "#/components/schemas/Block"
+						},
+						"type": "array"
+					},
+					"difficulty": {
+						"type": "number",
+						"format": "double"
+					},
+					"pendingTransactions": {
+						"items": {
+							"$ref": "#/components/schemas/Transaction"
+						},
+						"type": "array"
+					},
+					"mindingRewards": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"chain",
+					"difficulty",
+					"pendingTransactions",
+					"mindingRewards"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TransactionBody": {
+				"properties": {
+					"from": {
+						"type": "string"
+					},
+					"to": {
+						"type": "string",
+						"nullable": true
+					},
+					"amount": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"from",
+					"to",
+					"amount"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "blockchain-fun",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/getChain": {
+			"get": {
+				"operationId": "GetChain",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ChainResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"block"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/transaction/pendingList": {
+			"get": {
+				"operationId": "GetPendingTransactionList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Transaction"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"transaction"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/transaction/add": {
+			"post": {
+				"operationId": "AddTransaction",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Transaction"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"transaction"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TransactionBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/transaction/mine/{walletAddress}": {
+			"post": {
+				"operationId": "MineTransaction",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Transaction"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"transaction"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "walletAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/wallet/create": {
+			"post": {
+				"operationId": "CreateWallet",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"walletAddress": {}
+									},
+									"required": [
+										"walletAddress"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"wallet"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
