@@ -16,9 +16,5 @@ jobs:
       - run: npm i
       - run: npm run test
 
-      - name: Jest Coverage Comment
-        id: coverageComment
-        uses: MishaKav/jest-coverage-comment@main
-        with:
-          hide-comment: true
-          coverage-summary-path: coverage/coverage-final.json
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
