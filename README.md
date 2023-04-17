@@ -4,6 +4,9 @@
 
 *⚠️ For education purposes only. This is by no means a complete implementation, and it is of course by no means secure!*
 
+## Demo 
+https://kobecoin2-kobenguyent.b4a.run/api-docs/
+
 ## Features
 
 * Simple proof-of-work algorithm
