@@ -14,6 +14,12 @@ import { routes } from './routes';
 import swaggerUi from "swagger-ui-express";
 const swaggerDocument = require('../docs/swagger.json');
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', '*');
+    next();});
+
 // support parsing of application/json type post data
 app.use(bodyParser.json());
 
