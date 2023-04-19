@@ -7,7 +7,7 @@ import Transaction from "../../Transaction";
 export default class MineTransactionController {
     @Post()
     public async mineTransaction(walletAddress: string): Promise<Array<Transaction>> {
-        kobeCoin.minePendingTransactions(walletAddress)
+        await kobeCoin.minePendingTransactions(walletAddress)
         return kobeCoin.pendingTransactions;
     }
 }

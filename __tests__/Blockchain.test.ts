@@ -53,10 +53,10 @@ test('should add valid tx to blockchain', async () => {
     expect(kobeCoin.pendingTransactions[0].fromAddress).toEqual(myWallet)
     expect(kobeCoin.pendingTransactions[0].toAddress).toEqual(myWallet1)
 
-    kobeCoin.minePendingTransactions(myWallet)
+    await kobeCoin.minePendingTransactions(myWallet)
     expect(kobeCoin.chain.length).toEqual(2)
     expect(kobeCoin.isValidChain()).toBeTruthy()
 
-    expect(await kobeCoin.getBalanceOfAddress(myWallet)).toEqual(0)
-    expect(await kobeCoin.getBalanceOfAddress(myWallet1)).toEqual(10)
+    expect(await kobeCoin.getBalanceOfAddress(myWallet)).toEqual(10)
+    expect(await kobeCoin.getBalanceOfAddress(myWallet1)).toEqual(20)
 })

@@ -6,11 +6,13 @@ class Transaction {
     toAddress: string | null;
     amount: number;
     private signature: any;
+    timestamp: number;
 
     constructor(fromAddress: string | null, toAddress: string | null, amount: number) {
         this.fromAddress = fromAddress;
         this.toAddress = toAddress;
         this.amount = amount;
+        this.timestamp = Date.now()
     }
 
     calculateHash() {

@@ -21,8 +21,13 @@ class Wallet {
     }
 
     async topup(address: string, amount: number) {
-        const currentBalance = await this.getBalance(address)
-        await db.push(`/${address}/balance`, currentBalance + amount)
+        try {
+            const currentBalance = await this.getBalance(address)
+            await db.push(`/${address}/balance`, currentBalance + amount)
+        } catch (e:any) {
+            console.log(`Something wrong! ${e.message}`)
+        }
+
     }
 
     getBalance(address:string) {

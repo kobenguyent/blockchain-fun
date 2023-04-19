@@ -4,7 +4,8 @@ const Joi = require('joi');
 const txSchema = Joi.object({
     fromAddress: Joi.string(),
     toAddress: Joi.string(),
-    amount: Joi.number()
+    amount: Joi.number(),
+    timestamp: Joi.number()
 })
 
 let tx:Transaction

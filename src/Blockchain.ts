@@ -20,7 +20,7 @@ class Blockchain implements IBlockchain {
         this.mindingRewards = 10;
     }
 
-    minePendingTransactions(miningRewardAddress: string) {
+    async minePendingTransactions(miningRewardAddress: string) {
         // rewards for miner
         if (miningRewardAddress) {
             this.pendingTransactions.push(new Transaction('system', miningRewardAddress, this.mindingRewards))
@@ -29,6 +29,9 @@ class Blockchain implements IBlockchain {
         let block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash)
         block.mineBlock(this.difficulty)
         this.chain.push(block)
+        for (const tx of this.pendingTransactions) {
+            if (tx.toAddress) await wallet.topup(tx.toAddress, tx.amount)
+        }
         this.pendingTransactions = []
     }
 

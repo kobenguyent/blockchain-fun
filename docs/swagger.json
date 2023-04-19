@@ -19,12 +19,17 @@
 					"amount": {
 						"type": "number",
 						"format": "double"
+					},
+					"timestamp": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
 					"fromAddress",
 					"toAddress",
-					"amount"
+					"amount",
+					"timestamp"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -266,6 +271,43 @@
 				],
 				"security": [],
 				"parameters": []
+			}
+		},
+		"/wallet/balance/{walletAddress}": {
+			"get": {
+				"operationId": "GetWalletBalance",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"balance": {}
+									},
+									"required": [
+										"balance"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"wallet"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "walletAddress",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		}
 	},
