@@ -21,15 +21,15 @@ class Blockchain implements IBlockchain {
     }
 
     minePendingTransactions(miningRewardAddress: string) {
+        // rewards for miner
+        if (miningRewardAddress) {
+            this.pendingTransactions.push(new Transaction('system', miningRewardAddress, this.mindingRewards))
+        }
+
         let block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash)
         block.mineBlock(this.difficulty)
         this.chain.push(block)
-        this.pendingTransactions = [new Transaction(null, miningRewardAddress, this.mindingRewards)]
-        block = new Block(Date.now(), this.pendingTransactions, this.getLatestBlock().hash)
-        block.mineBlock(this.difficulty)
-        this.chain.push(block)
-
-        this.pendingTransactions = this.pendingTransactions.filter((tx: any) => tx.fromAddress !== null)
+        this.pendingTransactions = []
     }
 
     addTransaction(transaction: Transaction) {
