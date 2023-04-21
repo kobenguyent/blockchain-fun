@@ -17,7 +17,7 @@ transactionRoute.post("/transaction/add", async (req, res) => {
     return res.send(response);
 });
 
-transactionRoute.post("/transaction/mine/:walletAddress", async (req, res) => {
+transactionRoute.post("/transaction/mine/:walletAddress?", async (req, res) => {
     const controller = new MineTransactionController();
     const response = await controller.mineTransaction(req.params['walletAddress'])
     return res.send(response);

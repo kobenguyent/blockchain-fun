@@ -25,13 +25,17 @@ class Wallet {
             const currentBalance = await this.getBalance(address)
             await db.push(`/${address}/balance`, currentBalance + amount)
         } catch (e:any) {
-            console.log(`Something wrong! ${e.message}`)
+            console.log(`Something went wrong! ${e.message}`)
         }
-
     }
 
     getBalance(address:string) {
-        return db.getData(`/${address}`).then(res => res.balance)
+        try {
+            return db.getData(`/${address}`).then(res => res.balance)
+        } catch (e:any) {
+            return `Something went wrong! ${e.message}`
+        }
+
     }
 
     getSignKey(address:string) {

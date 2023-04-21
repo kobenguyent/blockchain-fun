@@ -6,7 +6,11 @@ import {Get, Route, Tags} from "tsoa";
 export default class GetWalletBalanceController {
     @Get()
     public async getWalletBalance(walletAddress: string) {
-        const balance = await wallet.getBalance(walletAddress)
-        return { balance };
+        try {
+            const balance = await wallet.getBalance(walletAddress)
+            return { balance };
+        } catch (e:any) {
+            console.log(`Something went wrong ${e.message}`)
+        }
     }
 }

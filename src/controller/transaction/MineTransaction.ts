@@ -2,11 +2,11 @@ import {kobeCoin} from "../../index";
 import {Post, Route, Tags} from "tsoa";
 import Transaction from "../../Transaction";
 
-@Route("transaction/mine/:walletAddress")
+@Route("transaction/mine/:walletAddress?")
 @Tags('transaction')
 export default class MineTransactionController {
     @Post()
-    public async mineTransaction(walletAddress: string): Promise<Array<Transaction>> {
+    public async mineTransaction(walletAddress?: string): Promise<Array<Transaction>> {
         await kobeCoin.minePendingTransactions(walletAddress)
         return kobeCoin.pendingTransactions;
     }

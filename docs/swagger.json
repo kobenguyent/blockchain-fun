@@ -211,7 +211,7 @@
 				}
 			}
 		},
-		"/transaction/mine/{walletAddress}": {
+		"/transaction/mine/{walletAddress?}": {
 			"post": {
 				"operationId": "MineTransaction",
 				"responses": {

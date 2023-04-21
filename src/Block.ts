@@ -15,7 +15,7 @@ class Block implements IBlock {
     prevHash: string;
     hash: string;
     nonce: number;
-    constructor(timestamp: number, transactions: string, prevHash = '') {
+    constructor(timestamp: number, transactions: any, prevHash = '') {
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.prevHash = prevHash;

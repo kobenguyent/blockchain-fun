@@ -20,7 +20,7 @@ class Blockchain implements IBlockchain {
         this.mindingRewards = 10;
     }
 
-    async minePendingTransactions(miningRewardAddress: string) {
+    async minePendingTransactions(miningRewardAddress?: string) {
         // rewards for miner
         if (miningRewardAddress) {
             this.pendingTransactions.push(new Transaction('system', miningRewardAddress, this.mindingRewards))
@@ -46,7 +46,7 @@ class Blockchain implements IBlockchain {
 
     genesisBlock() {
         console.log('⏳ Initializing the blockchain, creating the genesis block...');
-        return new Block(Date.now(), `genesis block`, '0')
+        return new Block(Date.now(), [], '0')
     }
 
     getLatestBlock() {
