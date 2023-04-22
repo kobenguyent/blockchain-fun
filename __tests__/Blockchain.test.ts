@@ -15,7 +15,7 @@ test('should create the blockchain', () => {
 })
 
 test('should get the blockchain', () => {
-    expect(kobeCoin.getLatestBlock().transactions).toEqual('genesis block')
+    expect(kobeCoin.getLatestBlock().transactions).toEqual([])
 })
 
 test('should return if the chain is valid', () => {
