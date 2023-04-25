@@ -1,4 +1,4 @@
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/peternguyew)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/peternguyew) [![codecov](https://codecov.io/gh/kobenguyent/blockchain-fun/branch/main/graph/badge.svg?token=1d9k6IE7LW)](https://codecov.io/gh/kobenguyent/blockchain-fun)
 # KobeCoin
 ---
 
