@@ -33,7 +33,7 @@ class Wallet {
         try {
             return db.getData(`/${address}`).then(res => res.balance)
         } catch (e:any) {
-            return `Something went wrong! ${e.message}`
+            throw Error(`Something went wrong! ${e.message}`)
         }
 
     }
