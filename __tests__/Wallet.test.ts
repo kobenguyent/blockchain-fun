@@ -32,9 +32,9 @@ test('should show error when topup wallet is not successful', async () => {
 test('should show error when cannot get wallet balance', async () => {
     const myWallet = '12345'
     try {
-        await wallet.getBalance(myWallet)
-    } catch (e) {
-        expect(typeof e).toEqual('object')
+       await wallet.getBalance(myWallet)
+    } catch (e:any) {
+        expect(e.message).toEqual('Can\'t find dataPath: /12345. Stopped at 12345')
     }
 });
 

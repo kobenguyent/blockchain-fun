@@ -33,17 +33,25 @@ class Wallet {
         try {
             return db.getData(`/${address}`).then(res => res.balance)
         } catch (e:any) {
-            throw Error(`Something went wrong! ${e.message}`)
+            return `Cannot get wallet balance due to ${e.message}`
         }
 
     }
 
     getSignKey(address:string) {
-        return db.getData(`/${address}`).then(res => res.signKey)
+        try {
+            return db.getData(`/${address}`).then(res => res.signKey)
+        } catch (e:any) {
+            return `Cannot get sign key due to ${e.message}`
+        }
     }
 
     getPrivateKey(address:string) {
-        return db.getData(`/${address}`).then(res => res.privateKey)
+        try {
+            return db.getData(`/${address}`).then(res => res.privateKey)
+        } catch (e:any) {
+            return `Cannot get private key due to ${e.message}`
+        }
     }
 }
 
